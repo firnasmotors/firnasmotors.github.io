@@ -1878,11 +1878,134 @@
 
     
 
-    <div class="form-wrapper"
-      
-    >
-      
+    <iframe name="fm-gform-frame" title="Hidden form target" style="display:none" aria-hidden="true"></iframe>
+    <div class="form-wrapper">
+      <form class="fm-contact-form" id="fm-contact-form" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSfGsYeiYdsc-wqahcyxLkINm5oP5uw8aUCjnRuMcE4wKNLPDw/formResponse" target="fm-gform-frame">
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="fm-contact-honeypot" aria-hidden="true">
+
+        <fieldset class="fm-contact-name">
+          <legend>Name</legend>
+          <label class="fm-contact-field">
+            <span>First Name <span class="fm-contact-required">(required)</span></span>
+            <input type="text" name="entry.514180699" autocomplete="given-name" required>
+          </label>
+          <label class="fm-contact-field">
+            <span>Last Name <span class="fm-contact-required">(required)</span></span>
+            <input type="text" name="entry.1420401975" autocomplete="family-name" required>
+          </label>
+        </fieldset>
+        <label class="fm-contact-field">
+          <span>Email <span class="fm-contact-required">(required)</span></span>
+          <input type="email" name="entry.577506784" autocomplete="email" required>
+        </label>
+        <label class="fm-contact-field">
+          <span>Company</span>
+          <input type="text" name="entry.2022738319" autocomplete="organization">
+        </label>
+        <label class="fm-contact-field">
+          <span>Message <span class="fm-contact-required">(required)</span></span>
+          <textarea name="entry.1586460126" rows="5" required></textarea>
+        </label>
+        <button type="submit" class="fm-contact-submit">Submit</button>
+        <p class="fm-contact-status" id="fm-contact-status" hidden></p>
+      </form>
     </div>
+    <style>
+      .fm-contact-honeypot { position: absolute; left: -9999px; height: 0; width: 0; opacity: 0; }
+      .fm-contact-form {
+        display: grid;
+        gap: 1.15rem;
+        width: 100%;
+        max-width: 640px;
+        font-family: Poppins, system-ui, sans-serif;
+        color: #f4f4f5;
+      }
+      .fm-contact-name {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem 1rem;
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+      .fm-contact-name legend {
+        grid-column: 1 / -1;
+        padding: 0;
+        margin: 0 0 0.15rem;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: #f4f4f5;
+      }
+      .fm-contact-field {
+        display: grid;
+        gap: 0.35rem;
+        font-size: 0.92rem;
+        font-weight: 500;
+        color: #f4f4f5;
+      }
+      .fm-contact-required { color: #e8e8e8; font-weight: 400; }
+      .fm-contact-form input,
+      .fm-contact-form textarea {
+        width: 100%;
+        box-sizing: border-box;
+        border: 0;
+        border-radius: 2px;
+        padding: 0.85rem 0.9rem;
+        font: inherit;
+        font-weight: 400;
+        background: #fff;
+        color: #111;
+      }
+      .fm-contact-form input:focus,
+      .fm-contact-form textarea:focus {
+        outline: 2px solid #f4f4f5;
+        outline-offset: 2px;
+      }
+      .fm-contact-submit {
+        justify-self: start;
+        min-width: 7.5rem;
+        border: 0;
+        border-radius: 14px;
+        background: #fff;
+        color: #111;
+        font: inherit;
+        font-weight: 600;
+        padding: 0.95rem 1.7rem;
+        cursor: pointer;
+      }
+      .fm-contact-submit:hover { filter: brightness(0.95); }
+      .fm-contact-submit:disabled { opacity: 0.65; cursor: wait; }
+      .fm-contact-status { margin: 0; font-weight: 500; color: #f4f4f5; }
+      .fm-contact-status.is-success { color: #86efac; }
+      .fm-contact-status.is-error { color: #f87171; }
+      #block-21cc777b65e5e1c5b2aa .sqs-html-content,
+      #block-21cc777b65e5e1c5b2aa h2 {
+        color: #f4f4f5 !important;
+      }
+      @media (max-width: 640px) {
+        .fm-contact-name { grid-template-columns: 1fr; }
+      }
+    </style>
+    <script>
+      (function () {
+        var form = document.getElementById('fm-contact-form');
+        var status = document.getElementById('fm-contact-status');
+        if (!form) return;
+        form.addEventListener('submit', function (event) {
+          var honey = form.querySelector('.fm-contact-honeypot');
+          if (honey && honey.value) {
+            event.preventDefault();
+            return;
+          }
+          window.setTimeout(function () {
+            form.reset();
+            status.textContent = 'Thank you!';
+            status.className = 'fm-contact-status is-success';
+            status.hidden = false;
+          }, 700);
+        });
+      })();
+    </script>
     <style>
       #block-34a7476cd0e279959a9e .form-wrapper {
         display: grid;
